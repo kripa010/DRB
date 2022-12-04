@@ -16,11 +16,13 @@ import java.io.IOException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-public class DrbTest extends DrbTestBase{
+public class DrbTest extends DrbBase{
 	DrbLogin dlin;
 	 DrbSignUp dsignup;
 	 DrbCreateProfile dcrtprf;
 	 DrbEditProfile dedtprf;
+	 DrbLogout dlout;
+	 DrbDownload drbdwnld;
 //  public void loginValidate(String userName,String pass)
 //  {
 //	  dlin=new DrbLogin(driver);
@@ -180,6 +182,7 @@ public class DrbTest extends DrbTestBase{
 	 
 	  
   }
+  
   @Test(priority=6)
   public void downloadTemplate1() throws IOException, InterruptedException
   {
