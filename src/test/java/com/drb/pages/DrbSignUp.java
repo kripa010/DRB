@@ -1,66 +1,99 @@
 package com.drb.pages;
-
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class DrbSignUp {
 	WebDriver driver;
-	WebElement signup,signuplnk,username,passwd,phone,emailid,cpasswd,register;
 public DrbSignUp(WebDriver driver)
 {
 this.driver=driver;
+PageFactory.initElements(driver,this);
 }
+
+@FindBy(xpath="//a[@href='/login']")
+private WebElement signup;
+
+@FindBy(xpath="//a[@href='/signup']")
+private WebElement signuplnk;
+
+@FindBy(css="input[placeholder='Username']")
+private WebElement username;
+
+@FindBy(css="input[placeholder='Phone Number']")
+private WebElement phone;
+
+@FindBy(css="input[placeholder='Mail']")
+private WebElement emailid;
+
+@FindBy(css="input[placeholder='Password']")
+private WebElement passwd;
+
+@FindBy(css="input[placeholder='Confirm Password']")
+private WebElement cpasswd;
+
+@FindBy(xpath="//form/button")
+private WebElement register;
+
 	public void clickSignUp()
 	{
-		signup=driver.findElement(By.cssSelector("#navbar-wd > ul > li:nth-child(7) > a"));
 		signup.click();
-		
-	}
-
-	public void clickSignupLink()
+		}
+	
+	public void clickSignupLink() throws InterruptedException
 	{
-		signuplnk=driver.findElement(By.cssSelector("body > app-root > app-login > div > div > div > form > div.text-center.p-t-46.p-b-20 > span > a"));
+		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView();", signuplnk);
+		Thread.sleep(2000);
 		signuplnk.click();
 	}
+	
 
 	public void setUserName(String name)
 	{
-		username=driver.findElement(By.cssSelector("body > app-root > app-signup > div > div > form > div:nth-child(2) > input"));
+
 		username.sendKeys(name);
 	}
 
+	
 	public void setPhoneNumber(String phonenumber)
 	{
-		phone=driver.findElement(By.cssSelector("body > app-root > app-signup > div > div > form > div:nth-child(3) > input"));
+		
 		phone.sendKeys(phonenumber);
 	}
 
+	
 	public void setMailId(String email)
 	{
-		emailid=driver.findElement(By.cssSelector("body > app-root > app-signup > div > div > form > div:nth-child(4) > input"));	
+			
 		emailid.sendKeys(email);
 	}
 
+	
 	public void setPassword(String pass)
 	{
-		passwd=driver.findElement(By.cssSelector("body > app-root > app-signup > div > div > form > div:nth-child(5) > input"));
+	
 		passwd.sendKeys(pass);
 		
 	}
 	
 
 	public void setConfirmPassword(String cpass) {
-		cpasswd=driver.findElement(By.cssSelector("body > app-root > app-signup > div > div > form > div:nth-child(6) > input"));
+	
 		cpasswd.sendKeys(cpass);
 		
 	}
 
+	
 	public void clickRegister() {
-		register=driver.findElement(By.cssSelector("body > app-root > app-signup > div > div > form > button"));
-		register.click();
-		
-		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView();", register);
+		register.click();		
 	}
+		
+	}   
 
-}
